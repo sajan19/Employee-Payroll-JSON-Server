@@ -196,3 +196,9 @@ background-color:#acafac;
    }
     
 }
+error-output{
+    margin-left: 10px;
+    font-size: 12px;
+    font-style: italic;
+    color: red;
+}
