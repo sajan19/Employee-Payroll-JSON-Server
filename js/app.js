@@ -23,16 +23,16 @@ salary.addEventListener('input', function () {
 });
 
 
-const save = () => {
-    try {
-        let employeePayrollData = createEmployeePayroll();
-    } catch (e) {
-        return;
+// const save = () => {
+//     try {
+//         let employeePayrollData = createEmployeePayroll();
+//     } catch (e) {
+//         return;
         
-    }
-}
+//     }
+// }
 const createEmployeePayroll = () => {
-    let employeePayrollData = new EmployeePayrollData();
+    let employeePayrollData = new employeePayrollData();
     try {
         employeePayrollData.name = getInputValueById('#name');
     } catch (e) {
@@ -67,4 +67,22 @@ const getInputValueById = (id) =>{
 const getInputElementValue = (id) => {
     let value = document.getElementById(id).value;
     return value;
+}
+const save = ()=> {
+    try {
+        let employeePayrollData = createEmployeePayroll();
+        createAndUpdateStorage(employeePayrollData);
+    } catch (e) {
+        return;        
+    }
+}
+function createAndUpdateStorage(employeePayrollData) {
+    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+    if (employeePayrollList != undefined) {
+        employeePayrollList.push(employeePayrollData);
+    } else{
+        employeePayrollList = [employeePayrollData];
+    }
+    alert(employeePayrollList.toString());
+    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList));
 }
